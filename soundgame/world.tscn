@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d23mtpgxvd37b"]
+[gd_scene load_steps=18 format=3 uid="uid://d23mtpgxvd37b"]
 
 [ext_resource type="Script" path="res://scripts/movement.gd" id="1_f7dyc"]
 [ext_resource type="Texture2D" uid="uid://dw7ta7kqsgbhy" path="res://assets/sprites/world_tileset.png" id="1_lqtfq"]
@@ -6,6 +6,10 @@
 [ext_resource type="Script" path="res://scripts/PlayerAudioRange.gd" id="2_divah"]
 [ext_resource type="Script" path="res://EnemyAudioRange.gd" id="4_d400i"]
 [ext_resource type="Texture2D" uid="uid://2fnjx565k0er" path="res://assets/sprites/slime_green.png" id="5_8654k"]
+[ext_resource type="Script" path="res://scripts/enemy_steps.gd" id="5_xtlta"]
+[ext_resource type="AudioStream" uid="uid://61yrmtr1rjbk" path="res://assets/sounds/steps/snow-step-2-slow.mp3" id="7_g75kl"]
+[ext_resource type="AudioStream" uid="uid://ebfgun8kld2p" path="res://assets/sounds/steps/snow-step-1-slow.mp3" id="7_v36ee"]
+[ext_resource type="Script" path="res://scripts/rnd_pitch_shift.gd" id="9_5xb2p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jp7ve"]
 texture = ExtResource("1_lqtfq")
@@ -213,8 +217,12 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_6qtsy")
 debug_color = Color(0.831197, 0.352013, 0.461114, 0.42)
 
+[node name="AudioListener2D" type="AudioListener2D" parent="Player"]
+current = true
+
 [node name="Enemy" type="CharacterBody2D" parent="."]
 position = Vector2(794, 263)
+script = ExtResource("5_xtlta")
 
 [node name="BodyColission" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("CircleShape2D_r7hsk")
@@ -239,6 +247,21 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/NoiseRange"]
 shape = SubResource("CircleShape2D_tj138")
 debug_color = Color(0.831197, 0.352013, 0.461114, 0.42)
+
+[node name="step_1" type="AudioStreamPlayer2D" parent="Enemy"]
+stream = ExtResource("7_v36ee")
+autoplay = true
+attenuation = 1.666
+script = ExtResource("9_5xb2p")
+
+[node name="step_2" type="AudioStreamPlayer2D" parent="Enemy"]
+position = Vector2(2, 0)
+stream = ExtResource("7_g75kl")
+autoplay = true
+attenuation = 1.666
+script = ExtResource("9_5xb2p")
+
+[node name="Timer" type="Timer" parent="Enemy"]
 
 [connection signal="area_entered" from="Player/AudioRange" to="Player/AudioRange" method="_on_area_entered"]
 [connection signal="area_entered" from="Enemy/AudioRange" to="Enemy/AudioRange" method="_on_area_entered"]

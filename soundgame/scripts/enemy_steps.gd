@@ -13,8 +13,14 @@ func _ready():
 
 func _on_audio_player1_finished():
 	# When the first audio finishes, start the second
-	audio_player2.play()
+	#audio_player2.play()
+	audio_player2.randomize_and_play()
+	
+	#await _pause_and_play(audio_player2)
+
 
 func _on_audio_player2_finished():
 	# When the second audio finishes, loop back to the first
-	audio_player1.play()
+	#audio_player1.play()
+	audio_player2.randomize_and_play()
+	#await _pause_and_play(audio_player1)
