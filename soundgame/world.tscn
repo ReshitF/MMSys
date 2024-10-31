@@ -1,3 +1,80 @@
-[gd_scene format=3 uid="uid://d23mtpgxvd37b"]
+[gd_scene load_steps=11 format=3 uid="uid://d23mtpgxvd37b"]
+
+[ext_resource type="Script" path="res://scripts/movement.gd" id="1_f7dyc"]
+[ext_resource type="Texture2D" uid="uid://cykx6l1bvnivc" path="res://icon.svg" id="1_ogfgs"]
+[ext_resource type="Texture2D" uid="uid://cohffwe3t4qyr" path="res://assets/sprites/knight.png" id="2_6ul6i"]
+[ext_resource type="Script" path="res://scripts/PlayerAudioRange.gd" id="2_divah"]
+[ext_resource type="Script" path="res://EnemyAudioRange.gd" id="4_d400i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r7hsk"]
+radius = 27.0185
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_epnsr"]
+radius = 157.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6qtsy"]
+radius = 84.0952
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_emtys"]
+radius = 83.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tj138"]
+radius = 160.028
 
 [node name="World" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(284, 252)
+script = ExtResource("1_f7dyc")
+
+[node name="BodyColission" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_r7hsk")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(0, 1)
+scale = Vector2(0.359375, 0.359375)
+texture = ExtResource("2_6ul6i")
+
+[node name="AudioRange" type="Area2D" parent="Player"]
+collision_mask = 2
+script = ExtResource("2_divah")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AudioRange"]
+shape = SubResource("CircleShape2D_epnsr")
+debug_color = Color(0.309804, 0.584314, 0.615686, 0.419608)
+
+[node name="NoiseRange" type="Area2D" parent="Player"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/NoiseRange"]
+shape = SubResource("CircleShape2D_6qtsy")
+debug_color = Color(0.831197, 0.352013, 0.461114, 0.42)
+
+[node name="Enemy" type="CharacterBody2D" parent="."]
+position = Vector2(794, 263)
+
+[node name="BodyColission" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource("CircleShape2D_r7hsk")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+position = Vector2(0, 1)
+scale = Vector2(0.359375, 0.359375)
+texture = ExtResource("1_ogfgs")
+
+[node name="AudioRange" type="Area2D" parent="Enemy"]
+collision_layer = 2
+script = ExtResource("4_d400i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/AudioRange"]
+shape = SubResource("CircleShape2D_emtys")
+debug_color = Color(0.310463, 0.586067, 0.617002, 0.42)
+
+[node name="NoiseRange" type="Area2D" parent="Enemy"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/NoiseRange"]
+shape = SubResource("CircleShape2D_tj138")
+debug_color = Color(0.831197, 0.352013, 0.461114, 0.42)
+
+[connection signal="area_entered" from="Player/AudioRange" to="Player/AudioRange" method="_on_area_entered"]
+[connection signal="area_entered" from="Enemy/AudioRange" to="Enemy/AudioRange" method="_on_area_entered"]
