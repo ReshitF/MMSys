@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d23mtpgxvd37b"]
+[gd_scene load_steps=18 format=3 uid="uid://d23mtpgxvd37b"]
 
 [ext_resource type="Script" path="res://scripts/movement.gd" id="1_f7dyc"]
 [ext_resource type="Texture2D" uid="uid://dw7ta7kqsgbhy" path="res://assets/sprites/world_tileset.png" id="1_lqtfq"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://EnemyAudioRange.gd" id="4_d400i"]
 [ext_resource type="Texture2D" uid="uid://2fnjx565k0er" path="res://assets/sprites/slime_green.png" id="5_8654k"]
 [ext_resource type="AudioStream" uid="uid://ebfgun8kld2p" path="res://assets/sounds/steps/snow-step-1-slow.mp3" id="7_v36ee"]
+[ext_resource type="Script" path="res://scripts/enemy_steps.gd" id="9_dohet"]
+[ext_resource type="AudioStream" uid="uid://61yrmtr1rjbk" path="res://assets/sounds/steps/snow-step-2-slow.mp3" id="10_f7560"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jp7ve"]
 texture = ExtResource("1_lqtfq")
@@ -217,7 +219,7 @@ shape = SubResource("CircleShape2D_6qtsy")
 debug_color = Color(0.831197, 0.352013, 0.461114, 0.42)
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
-position = Vector2(794, 263)
+position = Vector2(800, 263)
 
 [node name="BodyColission" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("CircleShape2D_r7hsk")
@@ -246,14 +248,19 @@ debug_color = Color(0.831197, 0.352013, 0.461114, 0.42)
 [node name="Timer" type="Timer" parent="Enemy"]
 
 [node name="sound_node" type="Node3D" parent="."]
+script = ExtResource("9_dohet")
 
-[node name="step 1" type="AudioStreamPlayer3D" parent="sound_node"]
+[node name="step_1" type="AudioStreamPlayer3D" parent="sound_node"]
 stream = ExtResource("7_v36ee")
-autoplay = true
-max_distance = 2457.6
+volume_db = 80.0
+max_distance = 160.0
 
-[node name="microphone" type="AudioListener3D" parent="sound_node"]
-current = true
+[node name="step_2" type="AudioStreamPlayer3D" parent="sound_node"]
+stream = ExtResource("10_f7560")
+volume_db = 80.0
+max_distance = 160.0
+
+[node name="camera" type="Camera3D" parent="sound_node"]
 
 [connection signal="area_entered" from="Player/AudioRange" to="Player/AudioRange" method="_on_area_entered"]
 [connection signal="area_entered" from="Enemy/AudioRange" to="Enemy/AudioRange" method="_on_area_entered"]
