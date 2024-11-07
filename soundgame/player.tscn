@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://07pkhfvqcd40"]
+
+[ext_resource type="Script" path="res://scripts/movement.gd" id="1_klhnm"]
+[ext_resource type="Texture2D" uid="uid://cohffwe3t4qyr" path="res://assets/sprites/knight.png" id="2_1q5du"]
+[ext_resource type="Script" path="res://scripts/PlayerAudioRange.gd" id="3_ed4ft"]
+[ext_resource type="AudioStream" uid="uid://cgpj6law3ok8i" path="res://assets/footsteps.wav" id="4_r3gvh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r7hsk"]
+radius = 15.0333
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_epnsr"]
+radius = 157.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6qtsy"]
+radius = 84.0952
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(284, 252)
+script = ExtResource("1_klhnm")
+
+[node name="BodyColission" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r7hsk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.40234, 1.40234)
+texture = ExtResource("2_1q5du")
+region_enabled = true
+region_rect = Rect2(8.21089, 6.89449, 16.0595, 23.1663)
+
+[node name="AudioRange" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("3_ed4ft")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AudioRange"]
+shape = SubResource("CircleShape2D_epnsr")
+debug_color = Color(0.309804, 0.584314, 0.615686, 0.419608)
+
+[node name="NoiseRange" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoiseRange"]
+shape = SubResource("CircleShape2D_6qtsy")
+debug_color = Color(0.831197, 0.352013, 0.461114, 0.42)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-284, -252)
+stream = ExtResource("4_r3gvh")
+playback_type = 1
+
+[connection signal="area_entered" from="AudioRange" to="AudioRange" method="_on_area_entered"]
+[connection signal="area_exited" from="AudioRange" to="AudioRange" method="_on_area_exited"]
