@@ -4,7 +4,7 @@ const SPEED = 300.0
 const VOLUME_INCREASE_RATE = 0.1  # Adjust this for the speed of volume increase
 
 @onready var listener_3d = $"microphone"  # Reference to the 3D listener (optional)
-@onready var audio_player = $AudioStreamPlayer2D # Reference to the AudioStreamPlayer2D
+@onready var audio_player = $footsteps # Reference to the AudioStreamPlayer2D
 const FIXED_Z_POSITION = 0.0  
 
 func _ready() -> void:
