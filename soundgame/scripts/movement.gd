@@ -3,17 +3,23 @@ extends CharacterBody2D
 const SPEED = 300.0
 const VOLUME_INCREASE_RATE = 0.1  # Adjust this for the speed of volume increase
 
-# Reference to the AudioStreamPlayer2D
-@onready var audio_player = $AudioStreamPlayer2D
+@onready var listener_3d = $"microphone"  # Reference to the 3D listener (optional)
+@onready var audio_player = $AudioStreamPlayer2D # Reference to the AudioStreamPlayer2D
+const FIXED_Z_POSITION = 0.0  
 
 func _ready() -> void:
 	pass
+	
 	# Start playing the sound
 
 func _process(delta: float) -> void:
 	# Increase the volume slowly over time
+	var player_pos_2d = self.global_position
+	
+	listener_3d.position = Vector3(player_pos_2d.x, player_pos_2d.y, FIXED_Z_POSITION)
+	#print("Listener3D Position:", listener_3d.position)
 	audio_player.volume_db = clamp(audio_player.volume_db + VOLUME_INCREASE_RATE * delta, -80, 0)
-
+	
 	# Check for pause/resume input
 	if Input.is_action_just_pressed("ui_accept"):  # Default "ui_accept" is spacebar
 		if audio_player.playing:

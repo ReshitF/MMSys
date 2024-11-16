@@ -1,12 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://d23mtpgxvd37b"]
+[gd_scene load_steps=8 format=3 uid="uid://d23mtpgxvd37b"]
 
 [ext_resource type="Texture2D" uid="uid://dw7ta7kqsgbhy" path="res://assets/sprites/world_tileset.png" id="1_lqtfq"]
-[ext_resource type="Script" path="res://scripts/world_sound_sync.gd" id="1_moybg"]
 [ext_resource type="PackedScene" uid="uid://07pkhfvqcd40" path="res://player.tscn" id="2_mu81d"]
 [ext_resource type="PackedScene" uid="uid://b5kxdu13eqh04" path="res://enemy.tscn" id="3_m83n0"]
-[ext_resource type="AudioStream" uid="uid://ebfgun8kld2p" path="res://assets/sounds/steps/snow-step-1-slow.mp3" id="7_v36ee"]
-[ext_resource type="Script" path="res://scripts/enemy_steps.gd" id="9_dohet"]
-[ext_resource type="AudioStream" uid="uid://61yrmtr1rjbk" path="res://assets/sounds/steps/snow-step-2-slow.mp3" id="10_f7560"]
+[ext_resource type="Script" path="res://scripts/EnemySoundSync.gd" id="5_1n2s4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jp7ve"]
 texture = ExtResource("1_lqtfq")
@@ -163,8 +160,13 @@ texture = ExtResource("1_lqtfq")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_jp7ve")
 
+[sub_resource type="Curve2D" id="Curve2D_pjd4t"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 4, -3, 0, 0, 0, 0, 3, -158, 0, 0, 0, 0, 2, 156, 0, 0, 0, 0, 4, -3)
+}
+point_count = 4
+
 [node name="World" type="Node2D"]
-script = ExtResource("1_moybg")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(27, 18)
@@ -174,19 +176,13 @@ layer_0/tile_data = PackedInt32Array(-1, 0, 15, 65535, 0, 15, 131071, 0, 15, 655
 
 [node name="Player" parent="." instance=ExtResource("2_mu81d")]
 
-[node name="Enemy" parent="." instance=ExtResource("3_m83n0")]
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_pjd4t")
 
-[node name="sound_node" type="Node3D" parent="."]
-script = ExtResource("9_dohet")
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(4, -3)
+rotation = -1.57725
+rotates = false
 
-[node name="step_1" type="AudioStreamPlayer3D" parent="sound_node"]
-stream = ExtResource("7_v36ee")
-volume_db = 80.0
-max_distance = 160.0
-
-[node name="step_2" type="AudioStreamPlayer3D" parent="sound_node"]
-stream = ExtResource("10_f7560")
-volume_db = 80.0
-max_distance = 160.0
-
-[node name="camera" type="Camera3D" parent="sound_node"]
+[node name="Enemy" parent="Path2D" instance=ExtResource("3_m83n0")]
+script = ExtResource("5_1n2s4")

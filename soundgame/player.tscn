@@ -58,5 +58,7 @@ position = Vector2(-2, 0)
 scale = Vector2(1.005, 1)
 texture = ExtResource("5_v1etb")
 
+[node name="microphone" type="Camera3D" parent="."]
+
 [connection signal="area_entered" from="AudioRange" to="AudioRange" method="_on_area_entered"]
 [connection signal="area_exited" from="AudioRange" to="AudioRange" method="_on_area_exited"]

@@ -7,9 +7,25 @@ func _ready():
 	# Connect each player's "finished" signal to a function
 	audio_player1.finished.connect(_on_audio_player1_finished)
 	audio_player2.finished.connect(_on_audio_player2_finished)
-	
+
+func set_noise_distance(player_range):
+	var col_shape = $CollisionShape2D.shape
+	var radius = 80
+	if col_shape is CircleShape2D:
+		radius = col_shape.radius
+	audio_player1.max_distance = player_range + radius
+	audio_player2.max_distance = player_range + radius
+	print('set max distance to',player_range + radius)
+
+func start_noise():
 	# Start the first player
 	audio_player1.play()
+
+func stop_noise():
+	# Start the first player
+	#audio_player1.stop()
+	pass
+	
 
 func _on_audio_player1_finished():
 	# When the first audio finishes, start the second

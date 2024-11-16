@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5kxdu13eqh04"]
+[gd_scene load_steps=10 format=3 uid="uid://b5kxdu13eqh04"]
 
 [ext_resource type="Texture2D" uid="uid://2fnjx565k0er" path="res://assets/sprites/slime_green.png" id="1_hmjda"]
-[ext_resource type="Script" path="res://EnemyAudioRange.gd" id="2_02cie"]
+[ext_resource type="Script" path="res://scripts/EnemyPath.gd" id="1_ukypl"]
+[ext_resource type="Script" path="res://scripts/EnemyAudioRange.gd" id="2_02cie"]
+[ext_resource type="AudioStream" uid="uid://ebfgun8kld2p" path="res://assets/sounds/steps/snow-step-1-slow.mp3" id="3_flj5f"]
+[ext_resource type="Script" path="res://scripts/EnemyNoise.gd" id="3_mjr50"]
+[ext_resource type="AudioStream" uid="uid://61yrmtr1rjbk" path="res://assets/sounds/steps/snow-step-2-slow.mp3" id="4_xmruq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7hsk"]
 radius = 15.0333
@@ -14,15 +18,10 @@ radius = 160.028
 
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(800, 263)
+script = ExtResource("1_ukypl")
 
 [node name="BodyColission" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r7hsk")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.30469, 1.30469)
-texture = ExtResource("1_hmjda")
-region_enabled = true
-region_rect = Rect2(48.6778, 55.2601, 22.3025, 16.7399)
 
 [node name="AudioRange" type="Area2D" parent="."]
 collision_layer = 2
@@ -34,11 +33,30 @@ debug_color = Color(0.310463, 0.586067, 0.617002, 0.42)
 
 [node name="NoiseRange" type="Area2D" parent="."]
 collision_layer = 2
+script = ExtResource("3_mjr50")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoiseRange"]
 shape = SubResource("CircleShape2D_tj138")
 debug_color = Color(0.831197, 0.352013, 0.461114, 0.42)
 
+[node name="step_1" type="AudioStreamPlayer3D" parent="NoiseRange"]
+stream = ExtResource("3_flj5f")
+volume_db = 80.0
+max_distance = 160.0
+
+[node name="step_2" type="AudioStreamPlayer3D" parent="NoiseRange"]
+stream = ExtResource("4_xmruq")
+volume_db = 80.0
+max_distance = 160.0
+
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, -3)
+rotation = -1.57725
+scale = Vector2(1.30469, 1.30469)
+texture = ExtResource("1_hmjda")
+region_enabled = true
+region_rect = Rect2(48.6778, 55.2601, 22.3025, 16.7399)
 
 [connection signal="area_entered" from="AudioRange" to="AudioRange" method="_on_area_entered"]
