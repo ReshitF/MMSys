@@ -1,8 +1,6 @@
-extends CharacterBody2D
-#@onready var path_follow : PathFollow2D = $Path2D/PathFollow2D
+extends PathFollow2D
+@onready var enemy = $"Enemy"
 
-@export var speed = 100
+@export var speed = 10
 func _process(delta: float) -> void:
-	#path_follow.progress += speed*delta
-	#print(path_follow.progress)
-	pass
+	self.progress += speed*delta

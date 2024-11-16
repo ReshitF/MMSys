@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d23mtpgxvd37b"]
+[gd_scene load_steps=9 format=3 uid="uid://d23mtpgxvd37b"]
 
 [ext_resource type="Texture2D" uid="uid://dw7ta7kqsgbhy" path="res://assets/sprites/world_tileset.png" id="1_lqtfq"]
 [ext_resource type="PackedScene" uid="uid://07pkhfvqcd40" path="res://player.tscn" id="2_mu81d"]
 [ext_resource type="PackedScene" uid="uid://b5kxdu13eqh04" path="res://enemy.tscn" id="3_m83n0"]
+[ext_resource type="Script" path="res://scripts/EnemyPath.gd" id="4_bic28"]
 [ext_resource type="Script" path="res://scripts/EnemySoundSync.gd" id="5_1n2s4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jp7ve"]
@@ -183,6 +184,9 @@ curve = SubResource("Curve2D_pjd4t")
 position = Vector2(4, -3)
 rotation = -1.57725
 rotates = false
+script = ExtResource("4_bic28")
 
-[node name="Enemy" parent="Path2D" instance=ExtResource("3_m83n0")]
+[node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource("3_m83n0")]
+position = Vector2(-271.132, 794.267)
+rotation = 1.57725
 script = ExtResource("5_1n2s4")
