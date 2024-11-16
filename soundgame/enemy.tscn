@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5kxdu13eqh04"]
+[gd_scene load_steps=9 format=3 uid="uid://b5kxdu13eqh04"]
 
 [ext_resource type="Texture2D" uid="uid://2fnjx565k0er" path="res://assets/sprites/slime_green.png" id="1_hmjda"]
-[ext_resource type="Script" path="res://scripts/EnemyPath.gd" id="1_ukypl"]
 [ext_resource type="Script" path="res://scripts/EnemyAudioRange.gd" id="2_02cie"]
 [ext_resource type="AudioStream" uid="uid://ebfgun8kld2p" path="res://assets/sounds/steps/snow-step-1-slow.mp3" id="3_flj5f"]
 [ext_resource type="Script" path="res://scripts/EnemyNoise.gd" id="3_mjr50"]
@@ -18,7 +17,6 @@ radius = 160.028
 
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(800, 263)
-script = ExtResource("1_ukypl")
 
 [node name="BodyColission" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r7hsk")
