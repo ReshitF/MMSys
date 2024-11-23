@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://bwb78wrcs8ux2" path="res://inventory/playerinv.tres" id="2_rl7f0"]
 [ext_resource type="Script" path="res://scripts/PlayerAudioRange.gd" id="3_ed4ft"]
 [ext_resource type="AudioStream" uid="uid://cgpj6law3ok8i" path="res://assets/footsteps.wav" id="4_r3gvh"]
-[ext_resource type="Texture2D" uid="uid://du72fetpd2wm2" path="res://assets/lightcone.png" id="5_v1etb"]
+[ext_resource type="Texture2D" uid="uid://cx2pcfxhptuj" path="res://assets/lightcone.png" id="5_v1etb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7hsk"]
 radius = 15.0333
@@ -52,7 +52,7 @@ playback_type = 1
 zoom = Vector2(1.49, 1.49)
 position_smoothing_enabled = true
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="Darkness" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
