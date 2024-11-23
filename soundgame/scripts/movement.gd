@@ -7,6 +7,8 @@ const VOLUME_INCREASE_RATE = 0.1  # Adjust this for the speed of volume increase
 @onready var audio_player = $footsteps # Reference to the AudioStreamPlayer2D
 const FIXED_Z_POSITION = 0.0  
 
+@export var inventory: Inv
+
 func _ready() -> void:
 	pass
 	
@@ -53,3 +55,9 @@ func _physics_process(delta: float) -> void:
 	# Make the sprite face the mouse
 	var mouse_position = get_global_mouse_position()
 	self.look_at(mouse_position)
+	
+func collect(item):
+	inventory.insert(item)
+	
+func player():
+	pass

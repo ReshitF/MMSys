@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=4 format=3 uid="uid://b7mgmugfaciao"]
+
+[ext_resource type="Script" path="res://inventory/InventoryItem.gd" id="1_qxuoq"]
+[ext_resource type="Texture2D" uid="uid://qeerjhc1app3" path="res://assets/MS_Spooky_Mansion/Animated_16x16/Spritesheet_16x16/Small_coin_1_anim_16x16.png" id="2_3udmg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6s62"]
+atlas = ExtResource("2_3udmg")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_qxuoq")
+name = "coin"
+texture = SubResource("AtlasTexture_d6s62")

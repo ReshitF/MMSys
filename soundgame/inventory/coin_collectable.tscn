@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0t681ctv55nf"]
+
+[ext_resource type="Script" path="res://coin_collectable.gd" id="1_ouu41"]
+[ext_resource type="Texture2D" uid="uid://qeerjhc1app3" path="res://assets/MS_Spooky_Mansion/Animated_16x16/Spritesheet_16x16/Small_coin_1_anim_16x16.png" id="2_2yx6t"]
+[ext_resource type="Resource" uid="uid://b7mgmugfaciao" path="res://inventory/items/coin.tres" id="2_k5bfb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_501uw"]
+atlas = ExtResource("2_2yx6t")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s3us1"]
+
+[node name="coin_collectable" type="StaticBody2D"]
+script = ExtResource("1_ouu41")
+item = ExtResource("2_k5bfb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_501uw")
+
+[node name="interactable_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_area"]
+shape = SubResource("CircleShape2D_s3us1")
+
+[connection signal="body_entered" from="interactable_area" to="." method="_on_interactable_area_body_entered"]

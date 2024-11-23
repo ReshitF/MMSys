@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=4 format=3 uid="uid://b40cxbbfr1oa1"]
+
+[ext_resource type="Script" path="res://inventory/InventoryItem.gd" id="1_qlwob"]
+[ext_resource type="Texture2D" uid="uid://br7wmp87ybk0d" path="res://assets/sprites/fruit.png" id="2_8h6dr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hupv8"]
+atlas = ExtResource("2_8h6dr")
+region = Rect2(0.347, 32.666, 16, 16)
+
+[resource]
+script = ExtResource("1_qlwob")
+name = "Apple"
+texture = SubResource("AtlasTexture_hupv8")

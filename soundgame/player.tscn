@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://07pkhfvqcd40"]
+[gd_scene load_steps=10 format=3 uid="uid://07pkhfvqcd40"]
 
 [ext_resource type="Script" path="res://scripts/movement.gd" id="1_klhnm"]
 [ext_resource type="Texture2D" uid="uid://cohffwe3t4qyr" path="res://assets/sprites/knight.png" id="2_1q5du"]
+[ext_resource type="Resource" uid="uid://bwb78wrcs8ux2" path="res://inventory/playerinv.tres" id="2_rl7f0"]
 [ext_resource type="Script" path="res://scripts/PlayerAudioRange.gd" id="3_ed4ft"]
 [ext_resource type="AudioStream" uid="uid://cgpj6law3ok8i" path="res://assets/footsteps.wav" id="4_r3gvh"]
 [ext_resource type="Texture2D" uid="uid://du72fetpd2wm2" path="res://assets/lightcone.png" id="5_v1etb"]
@@ -15,8 +16,9 @@ radius = 157.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_6qtsy"]
 radius = 84.0952
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_klhnm")
+inventory = ExtResource("2_rl7f0")
 
 [node name="BodyColission" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r7hsk")

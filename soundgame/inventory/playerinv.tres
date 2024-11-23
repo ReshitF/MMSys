@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="Inv" load_steps=15 format=3 uid="uid://bwb78wrcs8ux2"]
+
+[ext_resource type="Script" path="res://inventory/Inventory.gd" id="1_wyxa2"]
+[ext_resource type="Script" path="res://inv_slot.gd" id="2_jbshk"]
+
+[sub_resource type="Resource" id="Resource_yr6pa"]
+script = ExtResource("2_jbshk")
+
+[sub_resource type="Resource" id="Resource_tu4ou"]
+script = ExtResource("2_jbshk")
+
+[sub_resource type="Resource" id="Resource_gbtit"]
+script = ExtResource("2_jbshk")
+
+[sub_resource type="Resource" id="Resource_h220n"]
+script = ExtResource("2_jbshk")
+
+[sub_resource type="Resource" id="Resource_kqndh"]
+script = ExtResource("2_jbshk")
+
+[sub_resource type="Resource" id="Resource_0kw50"]
+script = ExtResource("2_jbshk")
+
+[sub_resource type="Resource" id="Resource_1rscd"]
+script = ExtResource("2_jbshk")
+
+[sub_resource type="Resource" id="Resource_iw118"]
+script = ExtResource("2_jbshk")
+
+[sub_resource type="Resource" id="Resource_qf6kq"]
+script = ExtResource("2_jbshk")
+
+[sub_resource type="Resource" id="Resource_x4tsw"]
+script = ExtResource("2_jbshk")
+
+[sub_resource type="Resource" id="Resource_a6feo"]
+script = ExtResource("2_jbshk")
+
+[sub_resource type="Resource" id="Resource_v2k25"]
+script = ExtResource("2_jbshk")
+
+[resource]
+script = ExtResource("1_wyxa2")
+slots = Array[ExtResource("2_jbshk")]([SubResource("Resource_yr6pa"), SubResource("Resource_tu4ou"), SubResource("Resource_gbtit"), SubResource("Resource_h220n"), SubResource("Resource_kqndh"), SubResource("Resource_0kw50"), SubResource("Resource_1rscd"), SubResource("Resource_iw118"), SubResource("Resource_qf6kq"), SubResource("Resource_x4tsw"), SubResource("Resource_a6feo"), SubResource("Resource_v2k25")])
