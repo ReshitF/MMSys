@@ -3,6 +3,7 @@ extends StaticBody2D
 @onready var interaction_area = $InteractionArea
 @onready var sprite = $AnimatedSprite2D
 @onready var collision = $CollisionShape2D
+@onready var player = $"../Player"
 
 var open: bool
 
@@ -13,11 +14,11 @@ func _ready() -> void:
 
 
 func _interact_door():
-	if !open:
+	if !open && player.hasKey:
 		sprite.play("open")
 		open = true
 		collision.disabled = true
-	else:
+	elif open:
 		sprite.play("close")
 		open = false
 		collision.disabled = false
