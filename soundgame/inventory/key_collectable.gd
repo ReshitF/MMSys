@@ -10,6 +10,7 @@ func _on_interactable_area_body_entered(body):
 		await get_tree().create_timer(0.1).timeout
 		self.queue_free()
 		player.hasKey = true
+		player.get_node("NoiseRange").get_child(0).get_shape().radius = 100.0
 		
 func playercollect():
 	player.collect(item)
