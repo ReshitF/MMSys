@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://d23mtpgxvd37b"]
+[gd_scene load_steps=18 format=4 uid="uid://d23mtpgxvd37b"]
 
 [ext_resource type="Texture2D" uid="uid://bv4520k78oyfk" path="res://assets/MS_Mansion_Shadow/Props.png" id="1_4rj5g"]
 [ext_resource type="Texture2D" uid="uid://dme4jodve7x35" path="res://assets/MS_Mansion_Shadow/Tileset.png" id="2_iw7sn"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cktqdmgf8d36k" path="res://inventory/inv_ui.tscn" id="7_urusf"]
 [ext_resource type="PackedScene" uid="uid://bh8ss1thhiy6v" path="res://box.tscn" id="8_somnk"]
 [ext_resource type="PackedScene" uid="uid://cnd7wirifv1uh" path="res://interaction/door.tscn" id="9_j1xcx"]
+[ext_resource type="Script" path="res://inventory/key_collectable.gd" id="11_epbvg"]
 [ext_resource type="PackedScene" path="res://inventory/key_collectable.tscn" id="11_hrpke"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_oq3ee"]
@@ -629,3 +630,5 @@ position = Vector2(287, -339)
 
 [node name="key_collectable" parent="." instance=ExtResource("11_hrpke")]
 position = Vector2(2953, -407)
+script = ExtResource("11_epbvg")
+item = null
