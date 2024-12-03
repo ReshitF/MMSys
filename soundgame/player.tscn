@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://07pkhfvqcd40"]
+[gd_scene load_steps=11 format=3 uid="uid://07pkhfvqcd40"]
 
 [ext_resource type="Script" path="res://scripts/movement.gd" id="1_klhnm"]
 [ext_resource type="Texture2D" uid="uid://cohffwe3t4qyr" path="res://assets/sprites/knight.png" id="2_1q5du"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/PlayerAudioRange.gd" id="3_ed4ft"]
 [ext_resource type="AudioStream" uid="uid://cgpj6law3ok8i" path="res://assets/footsteps.wav" id="4_r3gvh"]
 [ext_resource type="Texture2D" uid="uid://cx2pcfxhptuj" path="res://assets/lightcone.png" id="5_v1etb"]
+[ext_resource type="AudioStream" uid="uid://2eh5by5vsxkg" path="res://assets/keys.mp3" id="7_fjs1n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7hsk"]
 radius = 15.0333
@@ -53,6 +54,7 @@ zoom = Vector2(1.49, 1.49)
 position_smoothing_enabled = true
 
 [node name="Darkness" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -61,6 +63,9 @@ scale = Vector2(0.302, 0.3)
 texture = ExtResource("5_v1etb")
 
 [node name="microphone" type="Camera3D" parent="."]
+
+[node name="keySound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_fjs1n")
 
 [connection signal="area_entered" from="AudioRange" to="AudioRange" method="_on_area_entered"]
 [connection signal="area_exited" from="AudioRange" to="AudioRange" method="_on_area_exited"]

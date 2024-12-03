@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://mnfcvo2b4ps5"]
+
+[ext_resource type="Script" path="res://coin_collectable.gd" id="1_2d35q"]
+[ext_resource type="Resource" uid="uid://b7mgmugfaciao" path="res://inventory/items/coin.tres" id="2_4liii"]
+[ext_resource type="Texture2D" uid="uid://cgmpl3fcu0wv" path="res://assets/inventory/key_small3.png" id="3_40r7a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s3us1"]
+
+[node name="key_collectable" type="StaticBody2D"]
+position = Vector2(-38, 150)
+script = ExtResource("1_2d35q")
+item = ExtResource("2_4liii")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_40r7a")
+
+[node name="interactable_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_area"]
+shape = SubResource("CircleShape2D_s3us1")
+
+[connection signal="body_entered" from="interactable_area" to="." method="_on_interactable_area_body_entered"]

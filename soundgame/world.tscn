@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d23mtpgxvd37b"]
+[gd_scene load_steps=16 format=3 uid="uid://d23mtpgxvd37b"]
 
 [ext_resource type="Texture2D" uid="uid://dw7ta7kqsgbhy" path="res://assets/sprites/world_tileset.png" id="1_lqtfq"]
 [ext_resource type="PackedScene" uid="uid://07pkhfvqcd40" path="res://player.tscn" id="2_mu81d"]
@@ -6,9 +6,12 @@
 [ext_resource type="Script" path="res://scripts/EnemyPath.gd" id="3_s3h5s"]
 [ext_resource type="Script" path="res://scripts/EnemySoundSync.gd" id="5_1n2s4"]
 [ext_resource type="PackedScene" uid="uid://cktqdmgf8d36k" path="res://inventory/inv_ui.tscn" id="7_urusf"]
+[ext_resource type="PackedScene" uid="uid://mnfcvo2b4ps5" path="res://inventory/key_collectable.tscn" id="8_gbflu"]
 [ext_resource type="PackedScene" uid="uid://d0t681ctv55nf" path="res://inventory/coin_collectable.tscn" id="8_pnx84"]
-[ext_resource type="PackedScene" uid="uid://bh8ss1thhiy6v" path="res://box.tscn" id="8_somnk"]
+[ext_resource type="PackedScene" path="res://box.tscn" id="8_somnk"]
+[ext_resource type="Script" path="res://inventory/key_collectable.gd" id="9_21ly7"]
 [ext_resource type="PackedScene" uid="uid://cnd7wirifv1uh" path="res://interaction/door.tscn" id="9_j1xcx"]
+[ext_resource type="Resource" uid="uid://bga6d1dyxs1dl" path="res://inventory/items/key.tres" id="10_nu811"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jp7ve"]
 texture = ExtResource("1_lqtfq")
@@ -209,8 +212,13 @@ position = Vector2(19, 187)
 [node name="coin_collectable3" parent="." instance=ExtResource("8_pnx84")]
 position = Vector2(134, 262)
 
+[node name="key_collectable" parent="." instance=ExtResource("8_gbflu")]
+position = Vector2(-73, 375)
+script = ExtResource("9_21ly7")
+item = ExtResource("10_nu811")
+
 [node name="Player" parent="." instance=ExtResource("2_mu81d")]
-position = Vector2(-23, 33)
+position = Vector2(-23, 32)
 collision_layer = 3
 
 [node name="door" parent="." instance=ExtResource("9_j1xcx")]

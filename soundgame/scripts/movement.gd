@@ -8,6 +8,9 @@ const VOLUME_INCREASE_RATE = 0.1  # Adjust this for the speed of volume increase
 const FIXED_Z_POSITION = 0.0  
 
 @export var inventory: Inv
+@export var hasKey: bool = false
+
+var playback_pos: float = 0.0
 
 func _ready() -> void:
 	pass
@@ -46,7 +49,14 @@ func _physics_process(delta: float) -> void:
 
 	# Normalize direction to prevent faster diagonal movement
 	if direction != Vector2.ZERO:
+		if hasKey:
+			if !$keySound.is_playing():
+				$keySound.play(playback_pos)
 		direction = direction.normalized() * SPEED
+	else:
+		if $keySound.is_playing():
+			playback_pos = $keySound.get_playback_position()
+			$keySound.stop()
 
 	# Set velocity and move
 	velocity = direction
