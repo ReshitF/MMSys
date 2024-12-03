@@ -54,6 +54,7 @@ zoom = Vector2(1.49, 1.49)
 position_smoothing_enabled = true
 
 [node name="Darkness" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

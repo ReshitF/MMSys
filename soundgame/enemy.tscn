@@ -47,8 +47,6 @@ stream = ExtResource("4_xmruq")
 volume_db = 80.0
 max_distance = 160.0
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4, -3)
 rotation = -1.57725
@@ -56,5 +54,7 @@ scale = Vector2(1.30469, 1.30469)
 texture = ExtResource("1_hmjda")
 region_enabled = true
 region_rect = Rect2(48.6778, 55.2601, 22.3025, 16.7399)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [connection signal="area_entered" from="AudioRange" to="AudioRange" method="_on_area_entered"]
