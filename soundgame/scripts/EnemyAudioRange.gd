@@ -16,6 +16,8 @@ func _on_area_entered(area: Area2D) -> void:
 		print("ENEMY AudioRange has detected PLAYER NoiseRange")
 		#navigation_agent.target_position = area.global_position
 		enemy.chase=true
+		print("CHASING")
+
 		
 		
 	pass # Replace with function body.

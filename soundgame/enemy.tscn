@@ -13,7 +13,7 @@ radius = 15.0333
 radius = 83.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tj138"]
-radius = 160.028
+radius = 335.006
 
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(800, 263)
@@ -46,6 +46,8 @@ max_distance = 160.0
 stream = ExtResource("4_xmruq")
 volume_db = 80.0
 max_distance = 160.0
+
+[node name="Timer" type="Timer" parent="NoiseRange"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4, -3)
