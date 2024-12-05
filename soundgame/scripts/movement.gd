@@ -11,6 +11,7 @@ const FIXED_Z_POSITION = 0.0
 @export var hasKey: bool = false
 
 var playback_pos: float = 0.0
+var last_direction = "down"  # Default direction for idle animations
 
 func _ready() -> void:
 	pass
@@ -37,15 +38,18 @@ func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
 
 	# Get input for movement on both x and y axes
-
 	if Input.is_action_pressed("ui_up") or Input.is_action_pressed("press_w"):
 		direction.y -= 1
+		last_direction = "up"
 	if Input.is_action_pressed("ui_down") or Input.is_action_pressed("press_s"):
 		direction.y += 1
+		last_direction = "down"
 	if Input.is_action_pressed("ui_left") or Input.is_action_pressed("press_a"):
 		direction.x -= 1
+		last_direction = "left"
 	if Input.is_action_pressed("ui_right") or Input.is_action_pressed("press_d"):
 		direction.x += 1
+		last_direction = "right"
 
 	# Normalize direction to prevent faster diagonal movement
 	if direction != Vector2.ZERO:
@@ -53,19 +57,32 @@ func _physics_process(delta: float) -> void:
 			if !$keySound.is_playing():
 				$keySound.play(playback_pos)
 		direction = direction.normalized() * SPEED
+
+		# Play the appropriate movement animation
+		match last_direction:
+			"up":
+				$AnimatedSprite2D.play("up")
+			"down":
+				$AnimatedSprite2D.play("down")
+			"left":
+				$AnimatedSprite2D.play("left")
+			"right":
+				$AnimatedSprite2D.play("right")
 	else:
-		if $keySound.is_playing():
+		# Play idle animation when not moving
+		if hasKey and $keySound.is_playing():
 			playback_pos = $keySound.get_playback_position()
 			$keySound.stop()
+		match last_direction:
+			"up":
+				$AnimatedSprite2D.play("idle_up")
+			"down", "left", "right":  # Default idle for left/right is "idle_down"
+				$AnimatedSprite2D.play("idle_down")
 
 	# Set velocity and move
 	velocity = direction
 	move_and_slide()
 
-	# Make the sprite face the mouse
-	var mouse_position = get_global_mouse_position()
-	self.look_at(mouse_position)
-	
 func collect(item):
 	inventory.insert(item)
 	
