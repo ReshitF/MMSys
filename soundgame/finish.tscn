@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://dowsiu75p0ema"]
+
+[ext_resource type="Script" path="res://button2.gd" id="1_llj8f"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 468.0
+offset_top = 501.0
+offset_right = 660.0
+offset_bottom = 547.0
+text = "Return to start
+"
+script = ExtResource("1_llj8f")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 98.0
+offset_right = 932.0
+offset_bottom = 330.0
+text = "Multimedia Systems: Final Project
+
+Made by:
+	Reshit Fazlija
+	Irshad Bakhtali
+	Michail Athanasios Kalligeris Skentzos
+
+Professor:
+	Dr. Michael Lew
+	Dr. Erwin Bakker"

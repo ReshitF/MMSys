@@ -610,7 +610,7 @@ visible = false
 position = Vector2(287, -339)
 
 [node name="key_collectable" parent="." instance=ExtResource("11_hrpke")]
-position = Vector2(2953, -407)
+position = Vector2(288, -242)
 script = ExtResource("11_epbvg")
 item = null
 
