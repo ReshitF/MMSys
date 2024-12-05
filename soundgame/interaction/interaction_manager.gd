@@ -28,9 +28,12 @@ func _process(delta: float) -> void:
 		label.hide()
 		
 func _sort_by_distance_to_player(area1, area2):
-	var area1_to_player = player.global_position.distance_to(area1.global_position)
-	var area2_to_player = player.global_position.distance_to(area2.global_position)
-	return area1_to_player < area2_to_player
+	if area1 != null && area2 != null && player != null:
+		var area1_to_player = player.global_position.distance_to(area1.global_position)
+		var area2_to_player = player.global_position.distance_to(area2.global_position)
+		return area1_to_player < area2_to_player
+	else:
+		return 0
 	
 func _input(event):
 	if event.is_action_pressed("interact") && can_interact:
