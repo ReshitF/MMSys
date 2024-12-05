@@ -58,26 +58,26 @@ func _physics_process(delta: float) -> void:
 				$keySound.play(playback_pos)
 		direction = direction.normalized() * SPEED
 
-		# Play the appropriate movement animation
-		#match last_direction:
-			#"up":
-				#$AnimatedSprite2D.play("up")
-			#"down":
-				#$AnimatedSprite2D.play("down")
-			#"left":
-				#$AnimatedSprite2D.play("left")
-			#"right":
-				#$AnimatedSprite2D.play("right")
-	#else:
-		## Play idle animation when not moving
-		#if hasKey and $keySound.is_playing():
-			#playback_pos = $keySound.get_playback_position()
-			#$keySound.stop()
-		#match last_direction:
-			#"up":
-				#$AnimatedSprite2D.play("idle_up")
-			#"down", "left", "right":  # Default idle for left/right is "idle_down"
-				#$AnimatedSprite2D.play("idle_down")
+		 #Play the appropriate movement animation
+		match last_direction:
+			"up":
+				$AnimatedSprite2D.play("up")
+			"down":
+				$AnimatedSprite2D.play("down")
+			"left":
+				$AnimatedSprite2D.play("left")
+			"right":
+				$AnimatedSprite2D.play("right")
+	else:
+		# Play idle animation when not moving
+		if hasKey and $keySound.is_playing():
+			playback_pos = $keySound.get_playback_position()
+			$keySound.stop()
+		match last_direction:
+			"up":
+				$AnimatedSprite2D.play("idle_up")
+			"down", "left", "right":  # Default idle for left/right is "idle_down"
+				$AnimatedSprite2D.play("idle_down")
 
 	# Set velocity and move
 	velocity = direction
