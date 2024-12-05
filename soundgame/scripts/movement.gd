@@ -82,6 +82,8 @@ func _physics_process(delta: float) -> void:
 	# Set velocity and move
 	velocity = direction
 	move_and_slide()
+	var mouse_position = get_global_mouse_position()
+	$PointLight2D.look_at(mouse_position)
 
 func collect(item):
 	inventory.insert(item)
