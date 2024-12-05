@@ -16,6 +16,20 @@ const FIXED_Z_POSITION = 0.0
 var SPEED_DEFAULT = 50
 var SPEED_CHASE = 100
 var SPEED = SPEED_DEFAULT
+@export var chase_theme: AudioStream  # The chase music to play
+var is_chasing = false  # Track chase state
+
+func start_chasing():
+	if not is_chasing:
+		is_chasing = true
+		print("Chase started!")
+		music.play_chase_music()
+
+func stop_chasing():
+	if is_chasing:
+		is_chasing = false
+		print("Chase stopped!")
+		music.play_background_music()
 
 func _process(delta: float) -> void:
 	var pos_2d = self.global_position
@@ -45,12 +59,14 @@ func _process(delta: float) -> void:
 	if self.chase: # CHASE MODE
 		noise_range.set_interval(0)
 		SPEED=SPEED_CHASE
+		music.play_chase_music()
 		navigation_agent.target_position = target_to_chase.global_position
 		velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * SPEED
 		var target = navigation_agent.target_position
 		var dist = global_position.distance_to(target)
 		if dist>500:
 			self.chase=false
+			music.play_background_music()
 			SPEED=SPEED_DEFAULT
 			velocity= velocity*0
 		if dist<42:
