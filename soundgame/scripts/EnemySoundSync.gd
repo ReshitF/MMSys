@@ -17,17 +17,16 @@ var SPEED_DEFAULT = 50
 var SPEED_CHASE = 100
 var SPEED = SPEED_DEFAULT
 @export var chase_theme: AudioStream  # The chase music to play
-var is_chasing = false  # Track chase state
 
 func start_chasing():
-	if not is_chasing:
-		is_chasing = true
+	if self.chase:
+		self.chase = true
 		print("Chase started!")
 		music.play_chase_music()
 
 func stop_chasing():
-	if is_chasing:
-		is_chasing = false
+	if self.chase:
+		self.chase = false
 		print("Chase stopped!")
 		music.play_background_music()
 
@@ -65,13 +64,11 @@ func _process(delta: float) -> void:
 		var target = navigation_agent.target_position
 		var dist = global_position.distance_to(target)
 		if dist>500:
-			self.chase=false
-			music.play_background_music()
+			stop_chasing()
 			SPEED=SPEED_DEFAULT
 			velocity= velocity*0
 		if dist<42:
 			print("Game Over")
-			self.chase=false
 			stop_chasing()
 			get_tree().change_scene_to_file("res://startmenu.tscn")
 	
