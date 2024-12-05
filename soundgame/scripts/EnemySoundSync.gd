@@ -72,6 +72,8 @@ func _process(delta: float) -> void:
 		if dist<42:
 			print("Game Over")
 			self.chase=false
+			stop_chasing()
+			get_tree().change_scene_to_file("res://startmenu.tscn")
 	
 			
 			
